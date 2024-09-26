@@ -121,4 +121,50 @@ public class LinkedList {
         }
         return false;
     }
+    public boolean insert(int index, int value){
+        if (index<0 || index >length)return false;
+        if (index == 0){
+            prepend(value);
+            return true;
+        }
+        if(index == length){
+            append(value);
+            return true;
+        }
+        Node newNode = new Node(value);
+        Node prev = get(index-1);
+        newNode.next = prev.next;
+        prev.next = newNode;
+        length++;
+        return true;
+    }
+    public Node remove(int index){
+        if(index <0 || index>length) return null;
+        if (index ==0) {
+           return removeFirst();
+        };
+        if (index == length-1){
+            return removeLast();
+        }
+
+        Node prev = get(index-1);
+        Node thisNode = prev.next;
+        prev.next =thisNode.next;
+        thisNode.next = null;
+        length--;
+        return thisNode;
+    }
+    public void reverse() {
+        Node temp = head;
+        head = tail;
+        tail = temp;
+        Node after = temp.next;
+        Node before = null;
+        for (int i = 0; i < length; i++) {
+            after = temp.next;
+            temp.next = before;
+            before = temp;
+            temp = after;
+        }
+    }
 }
