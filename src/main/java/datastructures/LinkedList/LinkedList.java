@@ -167,4 +167,28 @@ public class LinkedList {
             temp = after;
         }
     }
+    public Node mergeTwoLists(Node head1, Node head2){
+        Node startNode = head1;
+        if(head1.value>head2.value){
+            startNode = head2;
+        }
+        Node temp;
+        Node node1 = head1;
+        Node node2 = head2;
+        while(node1 != null && node2 !=null){
+            if(node2.value>=node1.value){
+                temp = node1.next;
+                node1.next = node2;
+                node1 = temp;
+            }
+            else{
+                temp = node2;
+                node2.next = node1;
+                node2 = temp;
+            }
+
+        }
+        return startNode;
+
+    }
 }
